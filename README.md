@@ -1,62 +1,116 @@
-# binance-triangular-arbitrage
-# Binance Triangular Arbitrage Bot
-
-A Python-based bot that scans for and optionally executes profitable triangular arbitrage opportunities on Binance. Built for learning, testing, and scaling into real-world usage with safe rollout stages.
+Here’s a clear and updated `README.md` you can use for your inter-exchange arbitrage bot project comparing **Coinbase** and **Kraken**:
 
 ---
 
-## 🚀 Features
+```markdown
+# 💸 Inter-Exchange Arbitrage Bot (Coinbase vs Kraken)
 
-- Detects real-time triangular arbitrage loops (e.g., USDT → BTC → ETH → USDT)
-- Configurable profit thresholds and fees
-- Logging system for monitoring trades
-- Works via Binance API (API key required)
-- Built for gradual scaling — from simulation to live trading
+This Python bot compares crypto prices between **Coinbase** and **Kraken** to detect arbitrage opportunities in real-time.  
+It simulates buying on the cheaper exchange and selling on the more expensive one — no actual trades are executed.
 
 ---
 
-## 📦 Project Structure
+## 📁 Project Structure
 
-binance-triangular-arbitrage-bot/
-├── main.py # Entry point to run the bot
-├── triangle_finder.py # Detects arbitrage paths
-├── trade_executor.py # Executes trades (optional)
-├── config.py # Settings and constants
-├── binance_client.py # Binance API logic
-├── utils.py # Logging helpers, fee calculators
-├── logs/
-│ └── trades.log # Logged results
-├── .env # Your API keys (not tracked by Git)
-├── .env.example # Template for environment config
-├── .gitignore # Files/folders ignored by Git
-└── README.md # This file
+```
+
+binance-triangular-arbitrage/
+├── .env
+├── coinbase\_client.py
+├── kraken\_client.py
+├── price\_watcher.py
+├── README.md
+
+````
 
 ---
 
-## 🧪 Staged Development Plan
+## 🔧 Requirements
 
-### ✅ Stage 1: Simulation Mode (No Real Trading)
-- [x] Use **test API keys** or limit permissions to read-only
-- [x] Simulate triangle detection logic
-- [x] Log profitable paths to console and `logs/trades.log`
-- [ ] Confirm real spreads vs fees before trading
-
-### ✅ Stage 2: Dry-Run Execution Mode
-- [ ] Connect live Binance account (no funds or trading permission yet)
-- [ ] Log intended trade execution paths without placing orders
-- [ ] Validate trade sequence & balance requirements
-
-### ⚠️ Stage 3: Real Trading Mode (Live Funds)
-- [ ] Add trade execution via `trade_executor.py`
-- [ ] Start with **low trade amounts** (e.g., $10)
-- [ ] Monitor logs and exchange for actual fills and slippage
-- [ ] Auto-adjust thresholds for spread vs. fee profit
-
----
-
-## ⚙️ Requirements
+- Python 3.8+
+- `requests`
+- `python-dotenv` (if using .env for future expansion)
 
 Install dependencies:
 
 ```bash
 pip install -r requirements.txt
+````
+
+Or manually:
+
+```bash
+pip install requests python-dotenv
+```
+
+---
+
+## ⚙️ How to Run
+
+Run the live price comparison between Coinbase and Kraken:
+
+```bash
+python price_watcher.py
+```
+
+You’ll see output like:
+
+```
+🔁 Comparing BTC-USD...
+Coinbase: $29,450.12
+Kraken:   $29,482.65
+💡 Arbitrage opportunity: Buy on Coinbase, Sell on Kraken → Spread: $32.53
+```
+
+---
+
+## ✅ Features
+
+* Compares best bid/ask prices on Coinbase and Kraken
+* Detects arbitrage spreads across major trading pairs
+* Converts `BTC-USD` into Kraken’s `XBTUSD` format automatically
+* Extensible for more exchanges or pairs
+
+---
+
+## 🚀 Roadmap Ideas
+
+* [ ] Auto-refresh every N seconds
+* [ ] Profitability threshold filters
+* [ ] Log results to file
+* [ ] Simulated trade execution and profit calc
+* [ ] Telegram or push alerts
+* [ ] Real trading API support (optional)
+
+---
+
+## 🧪 Testing
+
+No API keys are required — all data is pulled from **public endpoints**.
+You can safely test this without a trading account.
+
+---
+
+## 🔐 Environment File (.env)
+
+Currently unused, but reserved for future API key support:
+
+```
+# .env (example)
+COINBASE_API_KEY=your_key_here
+KRAKEN_API_KEY=your_key_here
+```
+
+---
+
+## 🧠 Credits
+
+Built by Garret.
+Inspired by the idea of exploiting price differences between centralized exchanges for small, frequent wins.
+
+```
+
+---
+
+Let me know if you want a version with badges or Markdown previews (for GitHub)!
+```
