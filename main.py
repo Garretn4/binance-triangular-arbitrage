@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
 from binance.client import Client
+from triangle_finder import find_triangles
+
 
 load_dotenv()
 
